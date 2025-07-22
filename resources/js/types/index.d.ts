@@ -20,14 +20,17 @@ export interface NavItem {
     href: string;
     icon?: LucideIcon | null;
     isActive?: boolean;
+    auth?: boolean;
+}
+
+export interface NavItemObject {
+    [key: string]: NavItem;
 }
 
 export interface SharedData {
     name: string;
-    quote: { message: string; author: string };
     auth: Auth;
     ziggy: Config & { location: string };
-    sidebarOpen: boolean;
     [key: string]: unknown;
 }
 

@@ -157,3 +157,27 @@
         @apply bg-background text-foreground;
     }
 }
+
+.dark {
+    .nav-link {
+        &:hover {
+            @apply text-neutral-600;
+        }
+
+        &::after {
+            content: '\200B';
+            @apply ml-1;
+            @apply text-white;
+            @apply bg-white;
+            @apply w-[10px];
+            @apply h-[1.1rem];
+            animation: blink 1s step-start 0s infinite;
+        }
+    }
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
