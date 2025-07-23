@@ -1,15 +1,49 @@
+import PostItem from '@/components/posts/PostItem';
 import AppLayout from '@/layouts/app-layout';
-import { type SharedData } from '@/types';
-import { Head, usePage } from '@inertiajs/react';
+import { Post } from '@/types';
+import { Head } from '@inertiajs/react';
 
 export default function Welcome() {
-    // const { auth } = usePage<SharedData>().props;
+    const posts: Post[] = [
+        {
+            id: 'dnqwodnqw',
+            title: 'testing',
+            content: '',
+            created_at: '2025-07-23',
+            updated_at: '2025-07-23',
+        },
+        {
+            id: 'dnqwodnqw',
+            title: 'testing',
+            content: '',
+            created_at: '2025-07-23',
+            updated_at: '2025-07-23',
+        },
+        {
+            id: 'dnqwodnqw',
+            title: 'testing',
+            content: '',
+            created_at: '2025-07-23',
+            updated_at: '2025-07-23',
+        },
+        {
+            id: 'dnqwodnqw',
+            title: 'testing',
+            content: '',
+            created_at: '2025-07-23',
+            updated_at: '2025-07-23',
+        },
+    ];
 
     return (
         <AppLayout breadcrumbs={[]}>
             <Head title="Home" />
-            <main className="flex w-full max-w-[335px] flex-col-reverse lg:max-w-4xl lg:flex-row">
-                <p>root page</p>
+            <main className="w-full">
+                <div className="max-w-[60%] mx-auto mt-10">
+                    {posts.map((post, index) => (
+                        <PostItem post={post} index={index} key={index} />
+                    ))}
+                </div>
             </main>
         </AppLayout>
     );

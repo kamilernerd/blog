@@ -65,6 +65,16 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
         );
     }
 
+    function NavLinkMobile(props: { item: NavItem }) {
+        const { item } = props;
+        return (
+            <Link key={item.title} href={item.href} className="flex items-center space-x-2 font-medium">
+                {item.icon && <Icon iconNode={item.icon} className="h-5 w-5" />}
+                <span>{item.title}</span>
+            </Link>
+        );
+    }
+
     return (
         <>
             <div className="border-b border-sidebar-border/80">
@@ -85,22 +95,42 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                                 <div className="flex h-full flex-1 flex-col space-y-4 p-4">
                                     <div className="flex h-full flex-col justify-between text-sm">
                                         <div className="flex flex-col space-y-4">
-                                            {mainNavItems.map((item) => (
-                                                <Link key={item.title} href={item.href} className="flex items-center space-x-2 font-medium">
-                                                    {item.icon && <Icon iconNode={item.icon} className="h-5 w-5" />}
-                                                    <span>{item.title}</span>
-                                                </Link>
-                                            ))}
+                                            {mainNavItems.map((item, index) => {
+                                                if (item.auth) {
+                                                    if (auth.user) {
+                                                        return <NavLinkMobile item={item} key={index} />;
+                                                    } else {
+                                                        return;
+                                                    }
+                                                } else {
+                                                    return <NavLinkMobile item={item} key={index} />;
+                                                }
+                                            })}
                                         </div>
 
-                                        <div className="flex flex-col space-y-4">sdasdas</div>
+                                        <div className="flex flex-col space-y-4">
+                                            {rightNavItems.map((item, index) => {
+                                                if (item.auth) {
+                                                    if (auth.user) {
+                                                        return <NavLinkMobile item={item} key={index} />;
+                                                    } else {
+                                                        return;
+                                                    }
+                                                } else {
+                                                    if (auth.user) {
+                                                        return;
+                                                    }
+                                                    return <NavLinkMobile item={item} key={index} />;
+                                                }
+                                            })}
+                                        </div>
                                     </div>
                                 </div>
                             </SheetContent>
                         </Sheet>
                     </div>
 
-                    <Link href="/" prefetch className="flex items-center space-x-2">
+                    <Link href="/" className="flex items-center space-x-2">
                         <AppLogo />
                     </Link>
 

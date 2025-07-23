@@ -158,6 +158,31 @@
     }
 }
 
+.nav-link {
+    &:hover {
+        @apply text-neutral-800;
+    }
+
+    &::after {
+        content: '\200B';
+        @apply ml-1;
+        @apply text-neutral-900;
+        @apply bg-neutral-900;
+        @apply w-[10px];
+        @apply h-[1.1rem];
+        animation: blink 1s step-start 0s infinite;
+    }
+}
+
+.post-link:hover  {
+    > :first-child {
+        > :first-child {
+            @apply bg-neutral-900;
+            @apply text-white;
+        }
+    }
+}
+
 .dark {
     .nav-link {
         &:hover {
@@ -172,6 +197,15 @@
             @apply w-[10px];
             @apply h-[1.1rem];
             animation: blink 1s step-start 0s infinite;
+        }
+    }
+
+    .post-link:hover  {
+        > :first-child {
+            > :first-child {
+                @apply bg-white;
+                @apply text-neutral-900;
+            }
         }
     }
 }
